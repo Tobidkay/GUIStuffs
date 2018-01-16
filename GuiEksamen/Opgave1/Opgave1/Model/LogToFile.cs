@@ -22,6 +22,8 @@ namespace Opgave1.Model
 
         private readonly string filepath = AppDomain.CurrentDomain.BaseDirectory + "\\Products.json";
 
+        private readonly string filepathSale = AppDomain.CurrentDomain.BaseDirectory + "\\Sale.json";
+
         public void SaveProductsToFile(ObservableCollection<Product> ProductsToSave)
         {
             if (ProductsToSave == null || ProductsToSave.Count < 1)
@@ -35,6 +37,20 @@ namespace Opgave1.Model
                                                                                                                   }));
         }
 
+
+        public void SaveSaleToFile(Sale saleToSave)
+        {
+            if (saleToSave == null)
+            {
+                return;
+            }
+            saleToSave.SaveId = Guid.NewGuid().ToString();
+            File.AppendAllText(this.filepathSale, JsonConvert.SerializeObject(saleToSave, Formatting.Indented, new JsonSerializerSettings
+                                                                                                                  {
+                                                                                                                      NullValueHandling = NullValueHandling.Ignore,
+                                                                                                                      TypeNameHandling = TypeNameHandling.Objects
+                                                                                                                  }));
+        }
         public ObservableCollection<Product> LoadProductsFromFile()
         {
             var ListToReturn = new ObservableCollection<Product>();

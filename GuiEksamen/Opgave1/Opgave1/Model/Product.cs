@@ -9,7 +9,7 @@ namespace Opgave1.Model
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
-    class Product: AProduct
+    public class Product: AProduct
     {
         public Product()
         {

@@ -20,14 +20,14 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="5*"></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         
         <Label Grid.Row="0" Grid.Column="1" Content="Buy Menu" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"></Label>
         
         <StackPanel Grid.Row="1" Grid.Column="1">
             <Label Content="Products available"></Label>
-            <DataGrid Name="ProductsAvailable" AutoGenerateColumns="False" ItemsSource="{Binding ProductsAvailable}">
+            <DataGrid Name="ProductsAvailable" AutoGenerateColumns="False" ItemsSource="{Binding ProductsAvailable}" SelectedItem="{Binding Path=SelectedProduct}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Product Code" Binding="{Binding Path=ProductCode, Mode=TwoWay}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Name" Binding="{Binding Path=Name, Mode=TwoWay}"></DataGridTextColumn>
@@ -37,12 +37,12 @@
         </StackPanel>
         
         <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">
-            <Button Content="Add to buy" Margin="2"></Button>
+            <Button Content="Add to buy" Margin="2" Command="{Binding AddToBuyCommand}" CommandParameter="{Binding Path=SelectedProduct}"></Button>
         </StackPanel>
         
         <StackPanel Grid.Row="2" Grid.Column="1">
             <Label Content="Products to buy" ></Label>
-            <DataGrid Name="ProductsToBuy" AutoGenerateColumns="False" ItemsSource="{Binding ProductsToBuy}">
+            <DataGrid Name="ProductsToBuy" AutoGenerateColumns="False" ItemsSource="{Binding Sale.ProductsToBuy}" SelectedItem="{Binding SelectedSaleProduct}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Count" Binding="{Binding Path=Count, Mode=TwoWay}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Name" Binding="{Binding Path=Name, Mode=TwoWay}"></DataGridTextColumn>
@@ -53,9 +53,14 @@
         </StackPanel>
         
         <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">
-            <Button Content="Cash" Margin="2"></Button>
-            <Button Content="MobilePay" Margin="2"></Button>
-            <Button Content="Remove" Margin="2"></Button>
+            <Label Content="Amount:"></Label>
+            <TextBox Margin="2" Text="{Binding Path=CashIn}"></TextBox>
+            <Button Content="Cash" Margin="2" Command="{Binding Path=CashCommand}"></Button>
+            <Button Content="MobilePay" Margin="2" Command="{Binding Path=MobilePayCommand}"></Button>
+            <Button Content="Remove" Margin="2" Command="{Binding Path=RemoveBuyItemCommand}" CommandParameter="{Binding Path=SelectedSaleProduct}"></Button>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom">
+            <Label Content="{Binding Sale.TotalPrice}" ContentStringFormat="Pris: {0}"></Label>
         </StackPanel>
         
     </Grid>
