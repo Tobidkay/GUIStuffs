@@ -9,7 +9,6 @@ namespace Opgave1.ViewModel
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
-    using System.Windows;
 
     using Opgave1.Model;
 
@@ -17,9 +16,9 @@ namespace Opgave1.ViewModel
 
     class ProductManagementViewModel: INotifyPropertyChanged
     {
-        private ObservableCollection<AProduct> products = new ObservableCollection<AProduct>();
+        private ObservableCollection<Product> products = LogToFile.LogToFileInstance.LoadProductsFromFile() ?? new ObservableCollection<Product>();
 
-        public ObservableCollection<AProduct> Products
+        public ObservableCollection<Product> Products
         {
             get => this.products;
             set
@@ -36,9 +35,9 @@ namespace Opgave1.ViewModel
             }
         }
 
-        private AProduct selectedProduct = new Product();
+        private Product selectedProduct;
 
-        public AProduct SelectedProduct
+        public Product SelectedProduct
         {
             get => this.selectedProduct;
             set
@@ -55,22 +54,51 @@ namespace Opgave1.ViewModel
             }
         }
 
-        private AProduct newProduct = new Product();
+        private string newProductCode;
 
-        public AProduct NewProduct
+        private string newName;
+
+        private string newPrice;
+
+        public string NewProductCode
         {
-            get => this.newProduct;
+            get => this.newProductCode;
             set
             {
-                if (this.newProduct == value)
+                if (this.newProductCode == value)
                 {
                     return;
                 }
-                else
+                this.newProductCode = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        public string NewName
+        {
+            get => this.newName;
+            set
+            {
+                if (this.newName == value)
                 {
-                    this.newProduct = value;
-                    this.NotifyPropertyChanged();
+                    return;
                 }
+                this.newName = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        public string NewPrice
+        {
+            get => this.newPrice;
+            set
+            {
+                if (this.newPrice == value)
+                {
+                    return;
+                }
+                this.newPrice = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -80,16 +108,9 @@ namespace Opgave1.ViewModel
 
         public void AddNewProduct()
         {
-            if (this.newProduct == null)
-            {
-                MessageBox.Show("Cannot add a empty object!");
-            }
-            else
-            {
-                Products.Add(this.newProduct);
-                this.NewProduct = null;
-            }
-            
+            var p = new Product(this.newProductCode, this.newName, this.newPrice);           
+            this.Products.Add(p);
+            LogToFile.LogToFileInstance.SaveProductsToFile(this.products);
         }
 
         private DelegateCommand removeCommand;
@@ -100,6 +121,21 @@ namespace Opgave1.ViewModel
         public void RemoveProduct()
         {
             Products.Remove(SelectedProduct);
+            LogToFile.LogToFileInstance.SaveProductsToFile(this.products);
+        }
+
+        private DelegateCommand<Object> editCommand;
+
+        public DelegateCommand<Object> EditCommand =>
+            this.editCommand ?? (this.editCommand  = new DelegateCommand<Object>(this.EditProduct));
+
+        public void EditProduct(Object param)
+        {
+            var ProductToEdit = (Product)param;
+            ProductToEdit.ProductCode = this.newProductCode;
+            ProductToEdit.Name = this.newName;
+            ProductToEdit.Price = this.newPrice;
+            LogToFile.LogToFileInstance.SaveProductsToFile(this.products);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

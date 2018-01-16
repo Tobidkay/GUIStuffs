@@ -70,6 +70,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\LogToFile.cs" />
+    <Compile Include="Model\Sale.cs" />
+    <Compile Include="Model\SaleProduct.cs" />
     <Compile Include="ViewModel\BuyMenuViewModel.cs" />
     <Compile Include="ViewModel\ProductManagementViewModel.cs" />
     <Compile Include="View\ProductManagement.xaml.cs">

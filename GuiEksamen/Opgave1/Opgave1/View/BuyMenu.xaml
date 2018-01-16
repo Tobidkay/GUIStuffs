@@ -4,11 +4,59 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Opgave1.View"
+      xmlns:vm="clr-namespace:Opgave1.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="500"
       Title="BuyMenu">
-
+    <Page.DataContext>
+        <vm:BuyMenuViewModel/>
+    </Page.DataContext>
+    
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Label Grid.Row="0" Grid.Column="1" Content="Buy Menu" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"></Label>
+        
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label Content="Products available"></Label>
+            <DataGrid Name="ProductsAvailable" AutoGenerateColumns="False" ItemsSource="{Binding ProductsAvailable}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Product Code" Binding="{Binding Path=ProductCode, Mode=TwoWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Path=Name, Mode=TwoWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Path=Price, Mode=TwoWay}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">
+            <Button Content="Add to buy" Margin="2"></Button>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Label Content="Products to buy" ></Label>
+            <DataGrid Name="ProductsToBuy" AutoGenerateColumns="False" ItemsSource="{Binding ProductsToBuy}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Count" Binding="{Binding Path=Count, Mode=TwoWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Path=Name, Mode=TwoWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Path=Price, Mode=TwoWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Total Price" Binding="{Binding Path=TotalPrice, Mode=TwoWay}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">
+            <Button Content="Cash" Margin="2"></Button>
+            <Button Content="MobilePay" Margin="2"></Button>
+            <Button Content="Remove" Margin="2"></Button>
+        </StackPanel>
         
     </Grid>
 </Page>

@@ -26,13 +26,13 @@
         
         <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">
             <Label Content="ID"></Label>
-            <TextBox Name="TextBoxId" Text="{Binding Path=NewProduct.ProductCode, Mode=TwoWay}" Margin="2"></TextBox>
+            <TextBox Name="TextBoxId" Text="{Binding Path=NewProductCode}" Margin="2"></TextBox>
             <Label Content="Name"></Label>
-            <TextBox Name="TextBoxName" Text="{Binding Path=NewProduct.Name, Mode=TwoWay}" Margin="2"></TextBox>
+            <TextBox Name="TextBoxName" Text="{Binding Path=NewName}" Margin="2"></TextBox>
             <Label Content="Price"></Label>
-            <TextBox Name="TextBoxPrice" Text="{Binding Path=NewProduct.Price, Mode=TwoWay}" Margin="2"></TextBox>
+            <TextBox Name="TextBoxPrice" Text="{Binding Path=NewPrice}" Margin="2"></TextBox>
             <Button Content="Add" Margin="2" Command="{Binding AddCommand}"></Button>
-            <Button Content="Edit" Margin="2"></Button>
+            <Button Content="Edit" Margin="2" Command="{Binding EditCommand}" CommandParameter="{Binding SelectedProduct}"></Button>
             <Button Content="Remove" Margin="2" Command="{Binding RemoveCommand}"></Button>
             <Label Content="{Binding Path=SelectedProduct.ProductCode, Mode=TwoWay}" ContentStringFormat="ID: {0}"></Label>
             <Label Content="{Binding Path=SelectedProduct.Name, Mode=TwoWay}" ContentStringFormat="Name: {0}"></Label>
@@ -41,9 +41,9 @@
         <StackPanel Grid.Row="1" Grid.Column="1">
             <DataGrid Name="Products" AutoGenerateColumns="False" ItemsSource="{Binding Products}" SelectedItem="{Binding Path=SelectedProduct, Mode=TwoWay}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Product Code" Binding="{Binding ProductCode}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Price" Binding="{Binding Price}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Product Code" Binding="{Binding Path=ProductCode, Mode=TwoWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Path=Name, Mode=TwoWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Path=Price, Mode=TwoWay}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
