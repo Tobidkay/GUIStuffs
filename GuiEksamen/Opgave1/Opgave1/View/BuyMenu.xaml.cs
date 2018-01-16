@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Opgave1
+namespace Opgave1.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for BuyMenu.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class BuyMenu : Page
     {
-        public MainWindow()
+        public BuyMenu()
         {
             InitializeComponent();
         }

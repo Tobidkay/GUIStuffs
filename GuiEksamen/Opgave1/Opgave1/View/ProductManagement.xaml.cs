@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Opgave1
+namespace Opgave1.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ProductManagement.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class ProductManagement : Page
     {
-        public MainWindow()
+        public ProductManagement()
         {
             InitializeComponent();
         }
