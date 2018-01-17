@@ -9,6 +9,7 @@ namespace Opgave1.ViewModel
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
+    using System.Windows;
 
     using Opgave1.Model;
     using Opgave1.View;
@@ -190,16 +191,28 @@ namespace Opgave1.ViewModel
 
         public void CashPayment()
         {
-            Sale.PaymentMethod = "Cash";
-            Sale.calcCashBack(CashIn);
-            var saleWindow = new SaleWindow();
-            saleWindow.Title = "Complete Sale?";
-            saleWindow.DataContext = this.Sale;
-            if (saleWindow.ShowDialog() == true)
+            if (this.cashIn == null)
             {
-                LogToFile.LogToFileInstance.SaveSaleToFile(Sale);
-                Sale = new Sale();
+                MessageBox.Show("Cant pay with cash, with no cash");
             }
+            else if (Int32.Parse(cashIn) < Int32.Parse(Sale.TotalPrice))
+            {
+                MessageBox.Show("Cant give products for free!");
+            }
+            else
+            {
+                Sale.PaymentMethod = "Cash";
+                Sale.calcCashBack(CashIn);
+                var saleWindow = new SaleWindow();
+                saleWindow.Title = "Complete Sale?";
+                saleWindow.DataContext = this.Sale;
+                if (saleWindow.ShowDialog() == true)
+                {
+                    LogToFile.LogToFileInstance.SaveSaleToFile(Sale);
+                    Sale = new Sale();
+                }
+            }
+           
         }
 
 
