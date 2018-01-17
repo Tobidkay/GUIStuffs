@@ -12,7 +12,7 @@ namespace Opgave2.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View(new HomeModel());
         }
 
         public IActionResult About()
