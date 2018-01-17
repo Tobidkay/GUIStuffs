@@ -8,14 +8,23 @@
         <h2>Shopping List: <input Name="Name" type="text" value="@Model.Name"/></h2>
     </div>
     <div>
-        <ul>
+        <table>
+            <tr>
+                <th>Amount&nbsp;</th>
+                <th>Name&nbsp;</th>
+                <th>Induvidual Prices&nbsp;</th>
+            </tr>
             @foreach (var p in Model.ProductList)
             {
-                <li>Amout: @p.Amout Name: @p.ProductName Induvidual Price: @p.Price</li>
+            <tr>
+                <td>@p.Amout&nbsp;</td>
+                <td>@p.ProductName&nbsp;</td>
+                <td>@p.Price&nbsp;</td>
+            </tr>
             }
-        </ul>
-        <p>Amout: <input Name="Amout" type="text"/> <br/> Name: <input Name="ProductName" type="text"/> <br/> Price: <input Name="Price" type="text"/> </p>
+        </table>
+        <p>Amout: <input Name="Amout" type="text" /> <br /> Name:&nbsp; <input Name="ProductName" type="text" /> <br /> Price:&nbsp;&nbsp; <input Name="Price" type="text" /> </p>
         <p><Button>Add shopping product</Button></p>
-        <p><Button>Remove with name and 0</Button></p>
+        <p><Button>Remove with product name and fill in 0 in Amount and Price</Button></p>
     </div>
 }

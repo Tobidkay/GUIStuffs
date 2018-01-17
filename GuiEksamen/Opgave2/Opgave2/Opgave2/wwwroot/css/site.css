@@ -1,6 +1,28 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: cornflowerblue;
+}
+
+table, th, td {
+    border: 2px solid black;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+ul {
+    background: lightblue;
+}
+ul li {
+    color: black;
+    margin: 5px;
+    list-style-type: none;
+}
+
+nav {
+    background-color: lightblue; 
 }
 
 /* Wrapping element */

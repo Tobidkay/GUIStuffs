@@ -47,7 +47,7 @@ namespace Opgave2.Model
                 ListToReturn = JsonConvert.DeserializeObject<List<ShoppingListModel>>(
                     File.ReadAllText(this.filepath),
                     new JsonSerializerSettings
-                        {
+                        {   
                             NullValueHandling = NullValueHandling.Ignore
                         });
                 return ListToReturn;

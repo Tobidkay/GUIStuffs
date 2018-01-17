@@ -38,6 +38,9 @@
             <Label Content="{Binding Path=SelectedProduct.Name, Mode=TwoWay}" ContentStringFormat="Name: {0}"></Label>
             <Label Content="{Binding Path=SelectedProduct.Price, Mode=TwoWay}" ContentStringFormat="Price: {0} kr."></Label>
         </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom">
+            <Button Content="Back" Margin="2" Click="Button_Click"></Button>
+        </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
             <DataGrid Name="Products" AutoGenerateColumns="False" ItemsSource="{Binding Products}" SelectedItem="{Binding Path=SelectedProduct, Mode=TwoWay}">
                 <DataGrid.Columns>

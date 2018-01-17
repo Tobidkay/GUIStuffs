@@ -12,7 +12,7 @@ namespace Opgave2.Controllers
 
     public class ShoppingListController : Controller
     {
-        private HomeModel home = new HomeModel();
+        private HomeModel ProductListsList = new HomeModel();
         // GET: ShoppingListModel
         public ActionResult Index(Guid? Id)
         {
@@ -23,9 +23,9 @@ namespace Opgave2.Controllers
             }
             else
             {
-                if (this.home.ShoppingLists.Any(i => i.Id == Id))
+                if (this.ProductListsList.ShoppingLists.Any(i => i.Id == Id))
                 {
-                    newlist = this.home.ShoppingLists.Find(i => i.Id == Id);
+                    newlist = this.ProductListsList.ShoppingLists.Find(i => i.Id == Id);
                 }
                 else
                 {
@@ -41,17 +41,17 @@ namespace Opgave2.Controllers
         {
             if (ModelState.IsValid)
             {
-                var addList = this.home.ShoppingLists.Find(i => i.Id == id);
+                var addList = this.ProductListsList.ShoppingLists.Find(i => i.Id == id);
                 if (addList == null)
                 {
                     addList = new ShoppingListModel();
-                    this.home.ShoppingLists.Add(addList);
+                    this.ProductListsList.ShoppingLists.Add(addList);
                 }
                 if (amout == 0)
                 {
                     var itemToRemove = addList.ProductList.Find(a => a.ProductName == Productname);
                     addList.ProductList.Remove(itemToRemove);
-                    LogToFile.LogToFileInstance.SaveProductsToFile(this.home.ShoppingLists);
+                    LogToFile.LogToFileInstance.SaveProductsToFile(this.ProductListsList.ShoppingLists);
                     return this.View("Index", addList);
                 }
                 else
@@ -66,13 +66,9 @@ namespace Opgave2.Controllers
                     addList.Name = Name;
                     addList.ProductList.Add(productToAdd);
 
-                    LogToFile.LogToFileInstance.SaveProductsToFile(this.home.ShoppingLists);
+                    LogToFile.LogToFileInstance.SaveProductsToFile(this.ProductListsList.ShoppingLists);
                     return this.View("Index", addList);
-                }
-                
-                
-                
-
+                }               
             }
             else
             {

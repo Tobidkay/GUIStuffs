@@ -11,16 +11,17 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         
-        <Label Grid.Row="0" Content="Main Menu" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="35"></Label>
+        <Image Source="../TitlePicture.png" Grid.Row="0" Margin="0,0,0,0"></Image>
 
         <Border CornerRadius="8" Padding="10,10,10,10" Width="auto" Margin="50,50,50,50" Grid.Row="1">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
            
             <Button Margin="5" Content="Buy Menu" Name="BuyMenuButton" Click="BuyMenuButton_Click"></Button>
             <Button Margin="5" Content="Product Management" Name="ProductMenuButton" Click="ProductMenuButton_Click"></Button>
+                <Button Margin="5" Content="Exit" Name="ExitButton" Click="ExitButton_Click"></Button>
             
         </StackPanel>
         </Border>

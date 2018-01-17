@@ -35,5 +35,10 @@ namespace Opgave1.View
         {
             this.NavigationService.Navigate(new ProductManagement());
         }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.Shutdown();
+        }
     }
 }

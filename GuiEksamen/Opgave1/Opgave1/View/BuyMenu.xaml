@@ -61,6 +61,7 @@
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom">
             <Label Content="{Binding Sale.TotalPrice}" ContentStringFormat="Pris: {0}"></Label>
+            <Button Content="Back" Margin="2" Click="Button_Click"></Button>
         </StackPanel>
         
     </Grid>
